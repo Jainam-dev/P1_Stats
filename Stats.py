@@ -19,13 +19,6 @@ class exploratory_analysis():
     def getSD(self):
         return np.std(self.arr)
 
-
-        
-    
-
-
-
-
     def getNanSD(self):
         return np.nanstd(self.arr)
 
@@ -74,10 +67,10 @@ class exploratory_analysis():
                 a_list.append(x)
         return a_list
     
-    def visualistion(self):
+    def visualisation_Distribution(self):
     
         #Histogram of input array
-        fig,axes = plt.subplots(nrows=1,ncols=2,figsize=(20,15))
+        fig,axes = plt.subplots(nrows=1,ncols=3,figsize=(15,10))
 
 
         axes[0].hist(self.arr)
@@ -87,21 +80,11 @@ class exploratory_analysis():
         axes[0].legend({'Mean':self.get_mean(),'Median':self.get_median()})
 
         axes[1].boxplot(self.arr)
+        sns.distplot(self.arr,ax=axes[2])
 
  
         plt.show() 
 
-
-if __name__ == "__main__":
-
-    df = pd.read_csv("test.csv")
-    print(df.head())
-    df.dropna(subset=['Age'],inplace=True)
-
-
-    x = exploratory_analysis(df['Age'])
-    
-   
     print("Mean is ",x.get_mean())
     print("Median is ",x.get_median())
     print("GetSD is ",x.getSD())
@@ -110,7 +93,36 @@ if __name__ == "__main__":
     print("IQR is ",x.getIQR())
     print("Skewness is",x.get_skewness())
     print("Outliers are",x.get_outliers())
+    
+
+class relation():
+    def __init__(self,df):
+        self.df = df
+
+
+    def scatterplot(self):
+        sns.jointplot(x=self.df[''])
+
+    def barplots(self):
+        sns.barplot(x=self.df['Sex'],y=self.df['Survived'],data=self.df)
+
+if __name__ == "__main__":
+    df = pd.read_csv("train.csv")
+    
+    df.dropna(subset=['Age'],inplace=True)
+    df['fare_group']=pd.qcut(df['Fare'],10,range(1,11))
+    print(df.head())
+
+
+
+
+    x = exploratory_analysis(df['Age'])
+    y=relation(df)
+    
+   
+
 
     x.visualistion()
+    y.barplots()
 
 
