@@ -6,6 +6,7 @@ import seaborn as sns
 class exploratory_analysis():
     def __init__(self,arr):
         self.arr = arr
+        self.df = arr
 
 
     def get_mean(self):
@@ -18,13 +19,6 @@ class exploratory_analysis():
 
     def getSD(self):
         return np.std(self.arr)
-
-
-        
-    
-
-
-
 
     def getNanSD(self):
         return np.nanstd(self.arr)
@@ -89,7 +83,15 @@ class exploratory_analysis():
         axes[1].boxplot(self.arr)
 
  
-        plt.show() 
+        plt.show()
+
+    def visualization_cat(self):
+
+        #Pie Chart for categorical variable
+        plt.pie(self.df.value_counts(),labels=['Male','Female'],autopct='%.2f')
+        plt.show()
+
+
 
 
 if __name__ == "__main__":
@@ -100,7 +102,7 @@ if __name__ == "__main__":
 
 
     x = exploratory_analysis(df['Age'])
-    
+    y = exploratory_analysis(df['Sex'])
    
     print("Mean is ",x.get_mean())
     print("Median is ",x.get_median())
@@ -112,5 +114,6 @@ if __name__ == "__main__":
     print("Outliers are",x.get_outliers())
 
     x.visualistion()
+    y.visualization_cat()
 
 
