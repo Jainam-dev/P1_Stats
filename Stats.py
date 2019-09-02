@@ -6,6 +6,7 @@ import seaborn as sns
 class exploratory_analysis():
     def __init__(self,arr):
         self.arr = arr
+        self.df = arr
 
 
     def get_mean(self):
@@ -83,8 +84,30 @@ class exploratory_analysis():
         sns.distplot(self.arr,ax=axes[2])
 
  
-        plt.show() 
+        plt.show()
 
+    def visualization_cat(self):
+
+        #Pie Chart for categorical variable
+        plt.pie(self.df.value_counts(),labels=['Male','Female'],autopct='%.2f')
+        plt.show()
+
+
+
+<<<<<<< HEAD
+=======
+
+if __name__ == "__main__":
+
+    df = pd.read_csv("test.csv")
+    print(df.head())
+    df.dropna(subset=['Age'],inplace=True)
+
+
+    x = exploratory_analysis(df['Age'])
+    y = exploratory_analysis(df['Sex'])
+   
+>>>>>>> 86ea4d025eaaf3c72e338d284c65fe3247d24583
     print("Mean is ",x.get_mean())
     print("Median is ",x.get_median())
     print("GetSD is ",x.getSD())
@@ -123,6 +146,10 @@ if __name__ == "__main__":
 
 
     x.visualistion()
+<<<<<<< HEAD
     y.barplots()
+=======
+    y.visualization_cat()
+>>>>>>> 86ea4d025eaaf3c72e338d284c65fe3247d24583
 
 
