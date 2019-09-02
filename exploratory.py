@@ -174,7 +174,7 @@ class univariate_analysis():
 
 
 if __name__ == "__main__":
-    df=pd.read_csv("train.csv")
+    df=pd.read_csv("test.csv")
     x=univariate_analysis(df)
     x.quantative_visualisation()
     y=bivariate_analysis(df)
